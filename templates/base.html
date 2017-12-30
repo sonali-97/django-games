@@ -2,20 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/base_style.css" %}" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" async></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Cookie:regular"]
+      }
+    });
+</script>
   </head>
   <body>
-    <header>
+      <div class="grid">
+      <div class="banner">
       <h1>Ponder & Play!</h1>
+      </div>
+      <div class="text">
+        <main>
+         {% block content %}
+         {% endblock %}
+        </main>
+      </div>
+      <div class="sidebar">
       {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">logout</a>
+        <h3><a href="{% url 'logout' %}">logout</a><h3>
       {% else %}
-        <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
+        <h3><a href="{% url 'login' %}">Login to play </a> Or <a href="{% url 'signup' %}">Sign up</a> today.<h3>
       {% endif %}
-      <hr>
-    </header>
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
+      </div>
+      </div>   
   </body>
 </html>

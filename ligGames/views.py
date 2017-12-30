@@ -4,6 +4,9 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from ligGames.forms import SignUpForm
 
+def main(request):
+    return render(request, 'main_page.html')
+
 @login_required
 def home(request):
     return render(request, 'home.html')
